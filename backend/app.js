@@ -21,6 +21,8 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 
+app.use("/uploads/profiles", express.static("uploads/profiles"));
+
 // routes
 app.use("/api/auth", authRoutes);
 
