@@ -257,3 +257,21 @@ export const removeProfileImage = async (req, res, next) => {
 		});
 	}
 };
+
+export const logout = async (req, res, next) => {
+	try {
+		// return an empty token/cookie response, it should automatically expire in 1 second
+		res.cookie("jwt", "", { maxAge: 1, secure: true, sameSite: "None" });
+
+		return res.status(200).json({
+			success: true,
+			message: "Logged out successfully.",
+		});
+	} catch (error) {
+		console.log(error);
+		return res.status(500).json({
+			success: false,
+			message: "Internal server error",
+		});
+	}
+};
